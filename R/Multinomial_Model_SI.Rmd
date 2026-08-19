@@ -1,0 +1,408 @@
+---
+title: "Using mlogit to Model Mutational Spectra"
+author: "Julie M. Grosse-Sommer and Jarrod D. Hadfield"
+output: 
+  bookdown::html_document2:
+    css: custom.css
+bibliography: /Users/jhadfiel/Work/Tex/library/JarLib.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+if(Sys.info()["nodename"]%in%c("sce-bio-c04553", "sce-bio-c06973", "SCE-BIO-C07467", "S42-76R7VW5J")){
+  root<-"/Users/jhadfiel/Work/Selection_MA"
+}else{
+  root<-"/Users/s2221673"
+}
+
+library(mlogit)
+library(dfidx)
+library(knitr)
+library(kableExtra)
+
+read_data<-TRUE
+format_data<-TRUE
+run_models<-FALSE
+save_models<-FALSE
+
+#rmarkdown::render(file.path(root, "R/Multinomial_Model_SI.Rmd"))
+```
+
+```{r echo=FALSE}
+g<-10^6
+mu<-2*10^-10
+```
+
+In this workbook we implement and explain a set of multinomial models for analysing mutational data from mutational accumulation lines.  The models are fit using the mlogit R package [@Croissant.2020]. 
+
+We have sequence data from $471$ *Escherichia coli* mutation accumulation (MA) lines where there are four outcomes (A, C, G, T) at each of 4,641,652 sites. In the language of mlogit, sites are referred to as *individuals* or *choice situations*, and the bases as *alternatives*. Ideally, at each site we would record the $471$ outcomes. Since most sites have no mutations, the majority of sites would have all 471 outcomes as a single base - the base of the original sequence. For a minority of sites, 470 outcomes will be the original base and one outcome will be an alternative base caused by a mutation in a single line. In a very small number of cases more than one mutation may be observed at a site. Unfortunately, mlogit can only deal with multinomial outcomes of size one (i.e for each choice situation (site) only one alternative (base) is observed). However, when the chance of observing a mutation is small (because the mutation rate is small and/or the total number of MA generations is small)  - as in our case - then multiple mutations at a site are extremely rare and can be ignored.  Then, we can make the outcome the base of the original sequence if no mutations have been observed, and if a mutation has been observed, we can make the outcome the base of the new mutation. If the total number of MA generation is $g$ then the probability of no observed mutations at a site is $(1-\mu)^g$ and the probability of one mutation is $g\mu(1-\mu)^{g-1}$. By ignoring multiple mutations we approximate the latter probability as $1-(1-\mu)^{g}$, with the approximation being exact as $g\mu$ becomes small. For our *E. coli* MA data set, $g$ is of the order $10^6$ and previous estimates of the mutation rate have been of the order $2\times 10^{-10}$ [@Lee.2012] giving $g\mu$ of the order $2\times 10^{-4}$. The relative error in the approximation is therefore vanishingly small $g\mu(1-\mu)^{g-1}$ = $`r round(g*mu*(1-mu)^(g-1), 10)`$ and $1-(1-\mu)^{g}$ = $`r round(1-(1-mu)^g,10)`$.
+
+# Data-frame structure
+
+mlogit requires the data to be in long-format where each row corresponds to a specific combination of choice situation (site) and alternative (base). With a genome of 4,641,652 sites and four bases this results in data-frame with 18,566,608 rows (See Ecoli\_Data\_SI for details - the data-frame is large (1.5Gb) and is not hosted on GitHub):
+
+```{r read_data, eval=read_data}
+  long_dat<-read.csv(file.path(root, "Data/Intermediate/long_dat.csv"))
+```
+
+The data frame needs to be an object of class dfidx where the two indicies (choice situation and alternative) are defined through the argument `idx`:
+
+```{r format_data, eval=format_data}
+  long_dat <- dfidx(long_dat, shape = "long", idx=c("site", "base"))
+```
+
+The data frame contains the response variable `new_seq` which for each site contains a single one (for the base of the original sequence, or the mutated base) and three zeros. For example, at site 570 the original sequence has a C and no mutations were seen in any line:
+
+```{r }
+long_dat[which(long_dat$idx$site==570), c("new_seq", "mutate")]
+```
+
+`new_seq` is one for base C at site 570 and `mutate` is zero.  At site 571 the original sequence has a G and a mutation was seen in a line:
+
+```{r }
+long_dat[which(long_dat$idx$site==571), c("new_seq", "mutate")]
+```
+
+`mutate` is zero for G indicating it was the original sequence but `new_seq` is one for C indicating the mutation $G\rightarrow C$ ocurred in a line. Note the original sequence and any mutations are always given for the leading strand. 
+
+# Model 
+
+The underlying logit model has the form
+
+$$P_{ij} = exp(\eta_{ij})/\sum_{k=1}^{4}exp(\eta_{ik})$$
+
+ where $P_{ij}$ is the probability that site $i$ has base $j$ as the outcome, and $\eta_{ij}$ is the linear predictor for that outcome. The denominator sums the four exponentiated linear predictors for the site (one for each base). 
+
+The model formula has `new_seq` on the left-hand side and the right-hand size has three parts separated by pipes that define the form for the linear predictor ([see here](https://cran.r-project.org/web/packages/mlogit/vignettes/c2.formula.data.html){target="_blank"})
+
+
+* Part A) a covariate $x$ that varies over sites and/or bases for which you want a single regression parameter: a main effect of $x$ where $x$ may vary across bases within a site. 
+* Part B) a covariate $x$ that varies over sites only for which each base has a different regression parameter: an interaction between $x$ and base where $x$ does not vary across bases within a site. 
+* Part C) a covariate $x$ that varies over sites and bases for which each base has a different regression parameter: an interaction between $x$ and base where $x$ can vary across bases within a site. 
+
+## Basic Models 
+
+In the simplest case we could just estimate the odds of seeing a mutation:
+
+```{r read_mbasic, eval=!run_models, results='hide', echo=FALSE}
+if(!exists("m.basic")) load(file.path(root, "Data/Intermediate/m.basic.Rdata"))
+```
+
+```{r run_basic, eval=run_models}
+  m.basic <- mlogit(new_seq ~ mutate | 0 | 0, data=long_dat)
+```
+
+```{r }
+summary(m.basic)
+```
+  
+This model has the form
+
+$$P_{ij} = exp(\textrm{mutate}_{ij}\beta^{(1)})/\sum_{k=1}^{4}exp(\textrm{mutate}_{ij}\beta^{(1)})$$
+
+where $\textrm{mutate}_{ij}=1$ if base $j$ is not the original base (i.e would constitute a mutation). For every site, $\textrm{mutate}_{ij}=0$ for one base (the original base) and is one otherwise.  Consequently, the denominator is $3exp(\beta^{(1)})+1$ and the numerator is either 1 (if the base is the original base) or $exp(\beta^{(1)})$ if the base constitute a mutation. For a base $j$ that constitutes a mutation at site $i$ the probability is therefore:
+
+$P_{ij} = exp(\beta^{(1)})/(3exp(\beta^{(1)})+1)$
+
+Since there are three such bases, the probability that a mutation happens at site $i$ is the sum of the three probabilities. Since the probabilities are assumed constant, the probability of observing a mutation is estimated to be three times the above quantity. 
+
+
+```{r }
+b<-coef(m.basic)["mutate"]
+3*exp(b)/(3*exp(b)+1)
+```
+
+This can be compared to the observed frequency of mutations
+
+```{r }
+sum(long_dat$new_seq & long_dat$mutate)/4641652
+```
+
+and is identical, as would be expected in such a simple model.
+
+This is the frequency of observing at least one mutation across 266 lines which in aggregate involved 939,774 MA generations. This frequency, $p$, is equal $1-(1-\mu)^{939774}$ giving an estimate of $\mu$ as $1-exp(log(1-p)/939774)=$ $`r round(1-exp(log(1-3*exp(b)/(3*exp(b)+1))/939774), 13)`$. 
+
+```{r echo=FALSE, results='hide'}
+if(save_models & exists("m.basic")){
+ save(m.basic, file=file.path(root, "Data/Intermediate/m.basic.Rdata"))
+}
+rm(m.basic)
+gc()
+```
+
+A more complicated model allows the bases to have different mutation rates:
+
+```{r read_mbasic2, eval=!run_models, results='hide', echo=FALSE}
+if(!exists("m.basic2")) load(file.path(root, "Data/Intermediate/m.basic2.Rdata"))
+```
+
+```{r run_basic2, eval=run_models}
+  m.basic2 <- mlogit(new_seq ~ mutate | 0 | mutate, data=long_dat)
+```
+
+
+```{r }
+summary(m.basic2)
+```
+
+
+Here the main effect of $\textrm{mutate}$ is the coefficient for the base-line category (in this case A) and the remaining coefficients are deviations from this. C and G have lower mutation rates than A (C significantly so) but T is very similar. The coefficients are perhaps more easily understand in terms of the frequencies of mutated bases had they been at equal frequency in the original sequence:
+
+```{r }
+p.base<-exp(coef(m.basic2)[1])
+p.base<-c(p.base, exp(coef(m.basic2)[1]+coef(m.basic2)[-1]))
+p.base<-p.base/sum(p.base) 
+p.base
+```
+
+```{r echo=FALSE, results='hide'}
+if(save_models & exists("m.basic2")){
+ save(m.basic2, file=file.path(root, "Data/Intermediate/m.basic2.Rdata"))
+}
+rm(m.basic2)
+gc()
+```
+
+## Advanced Models 
+
+The model we used in the main manuscript is considerably more complicated than these basic models, and, with appropriate predictors, can be formulated using only Part A) in the model formula. One set of two-level predictors have fairly straightforward interpretations: factors that distinguish coding from non-coding sites (`coding_type`) sites in highly expressed genes or not (`HEG`) and whether the outcome base would constitute a transition or transversion  (`trans`) or a non-synonymous change or not (`nonsyn`). The remaining predictors allow the chance of mutation to depend on the original base and the surrounding sequence. These predictors are set up in a way where the sequence properties are strand independent (lagging or leading) in the baseline model, and any effect of the leading sequence properties are modelled as deviations from this.
+
+ The predictor `comb_REF` specifies whether the original base on the leading strand is $\{$A, T$\}$ or $\{$C, G$\}$. In the absence of strand-specificity the two bases in a pair should be equivalent. For example, imagine the sequence
+
+$5'$ --------------- A ----------------- $3'$ leading strand
+
+$3'$ --------------- T ----------------- $5'$ lagging strand
+
+Since the original sequence is encoded for the leading strand the base is A. However, the sequence
+
+$5'$ --------------- T ----------------- $3'$ leading strand
+
+$3'$ --------------- A ----------------- $5'$ lagging strand
+
+also has an A, albeit on the lagging strand. If A affects the chance of mutation in a strand-independent manner then these two sequences (with leading A or T) should be identical.   Therefore, we can combine information on the leading nucleotide into two main categories encoded by `comb_REF`:
+
+```{r echo=FALSE}
+df <- data.frame(
+  `comb_REF`            = c("AT", "AT", "CG", "CG"),
+  `Leading Nucleotide`= c("A",   "T",   "C",   "G"),
+  `Lagging Nucleotide`= c("T",   "A",   "G",   "C"),
+  check.names = FALSE
+
+)
+
+kable(df, booktabs = TRUE, align = "c", )  %>%
+  kable_styling(full_width=FALSE, position = "left", latex_options = c("hold_position"))               %>%
+  row_spec(0, bold = TRUE, background = "#C0C0C0")                # grey header
+```
+
+The predictors `leading_T` and `leading_G` are indicator variables specifying whether the original base on the leading strand is T or G respectively. These can be used to allow mutation rate/type to depend on properties of the base in the leading strand. 
+  
+
+The predictors `AT_nb`, `TA_nb`, `CG_nb` and `GC_nb` are numerical with values 0, 1 or 2 and represent information about neighbouring bases.  As with `comb_REF` they encode information about the effect of neighbouring bases when strand identity is not important. 
+
+Imagine the sequence
+
+$5'$ -------------- T A C ---------------- $3'$ leading strand
+
+$3'$ -------------- A T G ---------------- $5'$ lagging strand
+
+If we consider a mutation at the central site, on the leading strand the 5' neighbour is T and on the lagging strand the 5' neighbour is G. However, since the 5' neighbour of one strand is the 3' neighbour on the other strand,  we can record this information as the 5' and 3' neighbour on the leading strand. When strand identity does not matter a 5' T is equivalent to a 3' A (since this implies the lagging strand has a 5' T).  We can write this effect as $T|A$ to indicate it will be present if there is a 5' T *or* a 3' A. A similar logic can applied to other combinations of neighbours:
+
+```{r echo=FALSE}
+df <- data.frame(
+  Effect              = c("A|T", "T|A", "C|G", "G|C"),
+  `Leading 5' Neighbour`  = c("A",   "T",   "C",   "G"),
+  `Leading 3' Neighbour`  = c("T",   "A",   "G",   "C"),
+   check.names = FALSE
+)
+
+kable(df, booktabs = TRUE, align = "c", format="html", escape = FALSE) %>%
+  kable_styling(full_width = FALSE, position = "left", latex_options = c("hold_position")) %>%   # mimics [H]
+  row_spec(0, bold = TRUE, background = "#C0C0C0")        # grey header
+```
+
+Each site is assigned two of these effects depending on its two neighbours. For example, consider these sequences:
+
+Example 1.1
+
+$5'$ -------------- T A G ---------------- $3'$ leading strand
+
+$3'$ -------------- A T C ---------------- $5'$ lagging strand
+
+Example 2.1
+
+$5'$ -------------- A A G ---------------- $3'$ leading strand
+
+$3'$ -------------- T T C ---------------- $5'$ lagging strand
+
+Example 3.1
+
+$5'$ -------------- G A C ---------------- $3'$ leading strand
+
+$3'$ -------------- C T G ---------------- $5'$ lagging strand
+
+These are assigned the following values where the columns are the predictor variables `AT_nb`, `TA_nb`, `CG_nb` and `GC_nb`: 
+
+
+```{r echo=FALSE}
+df <- data.frame(
+  Example = c("1.1", "2.1", "3.1"),
+  `A|T`   = c(0, 1, 0),
+  `T|A`   = c(1, 0, 0),
+  `C|G`   = c(1, 1, 0),
+  `G|C`   = c(0, 0, 2),
+  check.names = FALSE
+)
+
+kable(df, booktabs = TRUE, align = "c", format="html", escape = FALSE) %>%
+  kable_styling(full_width = FALSE, position = "left",  
+                latex_options = "hold_position") %>%
+  row_spec(0, bold = TRUE, background = "#C0C0C0")   # grey header
+```
+
+
+If we reverse the strands, we get the same answer:
+
+Example 1.2
+
+$5'$ -------------- C T A ---------------- $3'$ leading strand
+
+$3'$ -------------- G A T ---------------- $5'$ lagging strand
+
+Example 2.2
+
+$5'$ -------------- C T T ---------------- $3'$ leading strand
+
+$3'$ -------------- G A A ---------------- $5'$ lagging strand
+
+Example 3.2
+
+$5'$ -------------- G T C ---------------- $3'$ leading strand
+
+$3'$ -------------- C A G ---------------- $5'$ lagging strand
+
+```{r echo=FALSE}
+df <- data.frame(
+  Example = c("1.2", "2.2", "3.2"),
+  "A|T"   = c(0, 1, 0),
+  "T|A"   = c(1, 0, 0),
+  "C|G"   = c(1, 1, 0),
+  "G|C"   = c(0, 0, 2),
+  check.names = FALSE        # keeps the colons in the headers
+)
+
+kable(df, booktabs = TRUE, format="html", align = "c") %>%
+  kable_styling(full_width = FALSE, position = "left",
+                latex_options = "hold_position") %>%
+  row_spec(0, bold = TRUE, background = "#C0C0C0")
+```
+
+Note that all four predictors are not identifiable and we drop `AT_nb` which generates the reference category AAT or ATT if `leading_T` is not fitted, or AAT if not.  The predictor `leading_minus_neighbor` is a four level factor giving the original base immediately 5' of the focal site on the leading strand. It can be used to allow mutation rate/type to depend on properties of the neighbours on the leading strand.  The category A is dropped giving rise to the same reference category as above.
+  
+```{r read_models, eval=!run_models, results='hide', echo=FALSE}
+if(!exists("m1")) load(file.path(root, "Data/Intermediate/m1.Rdata"))
+```
+
+We can start with a model where there is no strand specificity. We can fit `mutate` as a main effect which models the log odds of a mutation in the reference category. We can then interact `mutate` with our predictors which then increment the odds of mutation. The reference category is a transition mutation in a non-coding A or T with a 5' A and 3' T:
+
+```{r m1_fit, eval=run_models}
+  m1 <- mlogit(new_seq ~ mutate+mutate:(coding_type + HEG + CG_nb + GC_nb + TA_nb + trans + nonsyn + comb_REF) | 0 | 0, data=long_dat)
+```
+
+```{r }
+summary(m1)
+```
+
+The model provides good evidence that mutations are less likely to happen in coding regions and transversions are less likely than transitions. Perhaps surprisingly, although $\{$C, G$\}$ sites have higher mutation rate than $\{$A, T$\}$ sites it is not significant. On the other hand, neighbouring bases seem to have a strong effect: having a leading 5' G or 3' C increases the mutation rate relative to having a leading 5' A or 3' T.
+
+
+```{r echo=FALSE, results='hide'}
+if(save_models & exists("m1")){
+ save(m1, file=file.path(root, "Data/Intermediate/m1.Rdata"))
+ m1_fe=as.data.frame(coef(summary(m1)))
+ save(m1_fe,file=file.path(root, "Data/Intermediate/m1_fe.Rdata"))
+}
+rm(m1)
+gc()
+```
+
+We can also add strand specificity to this model: 
+
+
+```{r read_m2, eval=!run_models, results='hide', echo=FALSE}
+if(!exists("m2")) load(file.path(root, "Data/Intermediate/m2.Rdata"))
+```
+
+```{r m2_fit, eval=run_models}
+  m2 <- mlogit(new_seq ~ mutate+mutate:(coding_type + HEG + CG_nb + GC_nb + TA_nb + trans + nonsyn + comb_REF + leading_minus_neighbor+leading_T+leading_G) | 0 | 0, data=long_dat)
+```
+
+```{r }
+summary(m2)
+```
+
+While most of the results are broadly similar it is interesting to note that the effect of `comb_REFCG` has now increased (and is now significant) and the effect of `leading_G` is strongly negative. When we add `leading_G` the effect of `comb_REFCG` is now that for a leading C, and the effect of a leading G is the sum of `comb_REFCG` and `leading_G`. It seems that leading C's increase the mutation rate but leading G's decrease it. In the non-strand specific model leading C's and G's are equivalent and so the effect is missed because they largely cancel each other out. This has been noted in previous work [@Foster.2015].
+
+```{r echo=FALSE, results='hide'}
+if(save_models & exists("m2")){
+ save(m2, file=file.path(root, "Data/Intermediate/m2.Rdata"))
+ m2_fe=as.data.frame(coef(summary(m2)))
+ save(m2_fe,file=file.path(root, "Data/Intermediate/m2_fe.Rdata"))
+}
+rm(m2)
+gc()
+```
+
+We can also ask whether we would have detected differences between coding and non-coding regions and between synonymous and non-synonymous changes, had we not controlled for other properties that affect mutation (note codon usage bias is automatically controlled for in this analysis).
+
+```{r read_m3, eval=!run_models, results='hide', echo=FALSE}
+if(!exists("m3")) load(file.path(root, "Data/Intermediate/m3.Rdata"))
+```
+
+```{r m3_fit, eval=run_models}
+  m3 <- mlogit(new_seq ~ mutate+mutate:(coding_type+nonsyn)| 0 | 0, data=long_dat)
+```
+
+```{r }
+summary(m3)
+```
+
+```{r echo=FALSE, results='hide'}
+if(save_models & exists("m3")){
+ save(m3, file=file.path(root, "Data/Intermediate/m3.Rdata"))
+ m3_fe=as.data.frame(coef(summary(m3)))
+ save(m3_fe,file=file.path(root, "Data/Intermediate/m3_fe.Rdata"))
+}
+rm(m3)
+gc()
+```
+
+
+While the difference between coding and non-coding regions is very similar, the chance of seeing non-synonymous mutations has increased and is now significant. However, once the difference in transition/transversion rate is controlled for the deficit of non-synonymous mutations is reduced, and the estimated deficit is actually smaller than in the model in which full mutational spectrum is controlled for (model $\textrm{m2}$).
+
+```{r read_m4, eval=!run_models, results='hide', echo=FALSE}
+if(!exists("m4")) load(file.path(root, "Data/Intermediate/m4.Rdata"))
+```
+
+```{r m4_fit, eval=run_models}
+  m4 <- mlogit(new_seq ~ mutate+mutate:(coding_type+nonsyn+trans)| 0 | 0, data=long_dat)
+```
+
+```{r }
+summary(m4)
+```
+
+```{r echo=FALSE, results='hide'}
+if(save_models & exists("m4")){
+ save(m4, file=file.path(root, "Data/Intermediate/m4.Rdata"))
+ m4_fe=as.data.frame(coef(summary(m4)))
+ save(m4_fe,file=file.path(root, "Data/Intermediate/m4_fe.Rdata"))
+}
+rm(m4)
+gc()
+```
+
+
+
+

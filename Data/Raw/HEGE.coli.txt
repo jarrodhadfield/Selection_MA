@@ -1,0 +1,259 @@
+Escherichia coli K12, complete genome - 1..4639675
+
+
+Location	Strand	Length	PID		Gene	Synonym	Code	COG	Product
+
+190-255	+	21	16127995	thrL	b0001	-	-	thr operon leader peptide 
+8238-9191	+	317	16128002	talB	b0008	-	-	transaldolase B 
+9928-10494	-	188	16128004	yaaH	b0010	-	COG1584S	conserved inner membrane protein associated with acetate transport 
+12163-14079	+	638	16128008	dnaK	b0014	-	COG0443O	molecular chaperone DnaK 
+20815-21078	-	87	16128017	rpsT	b0023	-	COG0268J	30S ribosomal protein S20 
+22391-25207	+	938	16128020	ileS	b0026	-	COG0060J	isoleucyl-tRNA synthetase 
+30817-34038	+	1073	16128027	carB	b0033	-	COG0458EF	carbamoyl-phosphate synthase large subunit 
+108279-110984	+	901	16128091	secA	b0098	-	COG0653U	translocase 
+123017-125680	+	887	16128107	aceE	b0114	-	COG2609C	pyruvate dehydrogenase subunit E1 
+125695-127587	+	630	16128108	aceF	b0115	-	COG0508C	dihydrolipoamide acetyltransferase 
+127912-129336	+	474	16128109	lpd	b0116	-	COG1249C	dihydrolipoamide dehydrogenase 
+131615-134212	+	865	16128111	acnB	b0118	-	COG1049C	aconitate hydratase 
+141431-141967	+	178	90111088	hpt	b0125	-	COG0634F	hypoxanthine-guanine phosphoribosyltransferase 
+176610-176954	+	114	16128149	yadR	b0156	-	COG0316S	hypothetical protein 
+180884-182308	+	474	16128154	degP	b0161	-	COG0265O	serine endoprotease (protease Do), membrane-associated 
+185123-185947	-	274	16128159	dapD	b0166	-	COG2171E	2,3,4,5-tetrahydropyridine-2-carboxylate N-succinyltransferase 
+189874-190599	+	241	16128162	rpsB	b0169	-	-	30S ribosomal protein S2 
+190857-191708	+	283	16128163	tsf	b0170	-	-	elongation factor Ts 
+192872-193429	+	185	16128165	frr	b0172	-	-	ribosome releasing factor 
+200482-200967	+	161	16128171	hlpA	b0178	-	COG2825M	periplasmic chaperone 
+208621-209580	+	319	16128178	accA	b0185	-	COG0825I	acetyl-CoA carboxylase subunit alpha 
+217057-218775	-	572	16128187	proS	b0194	-	COG0442J	prolyl-tRNA synthetase 
+220113-220928	-	271	16128190	metQ	b0197	-	COG1464P	DL-methionine transporter subunit 
+254259-255716	-	485	16128223	pepD	b0237	-	COG2195E	aminoacyl-histidine dipeptidase (peptidase D) 
+255977-256435	+	152	16128224	gpt	b0238	-	COG0503F	xanthine phosphoribosyltransferase 
+426511-426843	+	110	16128392	yajC	b0407	-	COG1862U	preprotein translocase subunit YajC 
+430353-431237	-	294	16128396	tsx	b0411	-	COG3248M	nucleoside channel, receptor of phage T6 and colicin K 
+433871-434341	+	156	16128400	ribE	b0415	-	-	riboflavin synthase subunit beta 
+452813-453391	-	192	90111134	yajG	b0434	-	-	predicted lipoprotein 
+454357-455655	+	432	16128421	tig	b0436	-	COG0544O	trigger factor 
+456650-457924	+	424	16128423	clpX	b0438	-	COG1219O	ATP-dependent protease ATP-binding subunit 
+460675-460947	+	90	16128425	hupB	b0440	-	-	HU, DNA-binding transcriptional regulator, beta subunit 
+461139-463010	+	623	16128426	ppiD	b0441	-	COG0760O	peptidyl-prolyl cis-trans isomerase (rotamase D) 
+490636-491187	+	183	16128453	apt	b0469	-	COG0503F	adenine phosphoribosyltransferase 
+493300-493629	+	109	16128455	ybaB	b0471	-	COG0718S	hypothetical protein 
+494344-496218	+	624	16128457	htpG	b0473	-	COG0326O	heat shock protein 90 
+496399-497043	+	214	16128458	adk	b0474	-	COG0563F	adenylate kinase 
+538371-539732	+	453	16128496	allB	b0512	-	COG0044F	allantoinase 
+553166-553660	-	164	16128509	ppiB	b0525	-	COG0652O	peptidyl-prolyl cis-trans isomerase B (rotamase B) 
+638168-638731	+	187	16128588	ahpC	b0605	-	COG0450O	alkyl hydroperoxide reductase, C22 subunit 
+638976-640541	+	521	90111152	ahpF	b0606	-	COG3634O	alkyl hydroperoxide reductase, F52a subunit, FAD/NAD(P)-binding 
+647262-648794	-	510	16128598	citF	b0615	-	COG3051C	citrate lyase, citrate-ACP transferase (alpha) subunit 
+648805-649713	-	302	90111153	citE	b0616	-	COG2301G	citrate lyase, citryl-ACP lyase (beta) subunit 
+671424-674006	-	860	16128625	leuS	b0642	-	COG0495J	leucyl-tRNA synthetase 
+703167-705113	+	648	16128655	nagE	b0679	-	COG1263G	fused N-acetyl glucosamine specific PTS enzyme: IIC, IIB , and IIA components 
+705316-706980	+	554	16128656	glnS	b0680	-	COG0008J	glutaminyl-tRNA synthetase 
+710158-710688	-	176	16128660	fldA	b0684	-	COG0716C	flavodoxin 1 
+712781-714421	+	546	16128664	pgm	b0688	-	COG0033G	phosphoglucomutase 
+752408-753691	-	427	16128695	gltA	b0720	-	COG0372C	citrate synthase 
+755130-756896	+	588	16128698	sdhA	b0723	-	COG1053C	succinate dehydrogenase flavoprotein subunit 
+760745-761962	+	405	16128702	sucB	b0727	-	COG0508C	dihydrolipoamide acetyltransferase 
+762237-763403	+	388	16128703	sucC	b0728	-	COG0045C	succinyl-CoA synthetase subunit beta 
+763403-764272	+	289	16128704	sucD	b0729	-	COG0074C	succinyl-CoA synthetase subunit alpha 
+778290-778811	+	173	16128716	pal	b0741	-	COG2885M	peptidoglycan-associated outer membrane lipoprotein 
+786066-786818	-	250	16128723	gpmA	b0755	-	COG0588G	phosphoglyceromutase 
+846481-847227	-	248	16128779	glnH	b0811	-	COG0834ET	glutamine ABC transporter periplasmic protein 
+847631-848134	-	167	16128780	dps	b0812	-	COG0783P	DNA protection during starvation conditions 
+849673-850188	+	171	16128782	ompX	b0814	-	COG3637M	outer membrane protein X 
+901480-902211	-	243	16128831	artI	b0863	-	COG0834ET	arginine transporter subunit 
+950495-952777	-	760	16128870	pflB	b0903	-	COG1882C	pyruvate formate lyase I 
+961218-962891	+	557	16128878	rpsA	b0911	-	COG0539J	30S ribosomal protein S1 
+985117-986205	-	362	16128896	ompF	b0929	-	COG3203M	outer membrane porin 1a (Ia;b;F) 
+1015175-1015693	-	172	16128921	fabA	b0954	-	COG0764I	3-hydroxydecanoyl-ACP dehydratase 
+1018236-1019276	-	346	16128924	ompA	b0957	-	COG2885M	outer membrane protein A (3a;II*;G;d) 
+1103670-1104125	+	151	16129005	csgA	b1042	-	-	cryptic curlin major subunit 
+1146590-1146763	+	57	16129052	rpmF	b1089	-	COG0333J	50S ribosomal protein L32 
+1150838-1151074	+	78	16129057	acpP	b1094	-	COG0236IQ	acyl carrier protein 
+1157092-1158525	+	477	16129064	ptsG	b1101	-	COG1263G	fused glucose-specific PTS enzymes: IIB component/IIC component 
+1194346-1195596	+	416	16129099	icd	b1136	-	COG0538C	isocitrate dehydrogenase 
+1255944-1257035	-	363	16129166	ychF	b1203	-	COG0012J	translation-associated GTPase 
+1260151-1261098	-	315	16129170	prsA	b1207	-	COG0462FE	ribose-phosphate pyrophosphokinase 
+1279087-1282830	+	1247	16129187	narG	b1224	-	COG5013C	nitrate reductase 1, alpha subunit 
+1282827-1284365	+	512	16129188	narH	b1225	-	COG1140C	nitrate reductase 1, beta (Fe-S) subunit 
+1294669-1297344	-	891	16129202	adhE	b1241	-	COG1454C,COG1012C	fused acetaldehyde-CoA dehydrogenase/iron-dependent alcohol dehydrogenase/pyruvate-formate lyase deactivase 
+1348275-1349063	-	262	16129249	fabI	b1288	-	COG0623I	enoyl-(acyl carrier protein) reductase 
+1386329-1386835	-	168	16129285	tpx	b1324	-	COG2077O	thiol peroxidase 
+1627239-1627442	+	67	16129500	ydfZ	b1541	-	-	hypothetical protein 
+1676451-1677395	+	314	16129562	ydgH	b1604	-	-	hypothetical protein 
+1710793-1712295	+	500	16129592	tppB	b1634	-	COG3104E	putative tripeptide transporter permease 
+1725861-1726268	+	135	16129609	gloA	b1651	-	COG0346E	glyoxalase I, Ni-dependent 
+1731778-1732125	-	115	16129612	ydhD	b1654	-	COG0278O	hypothetical protein 
+1733402-1733983	+	193	16129614	sodB	b1656	-	COG0605P	superoxide dismutase, Fe 
+1753722-1755134	+	470	16129632	pykF	b1676	-	-	pyruvate kinase 
+1755445-1755681	+	78	16129633	lpp	b1677	-	-	murein lipoprotein 
+1797417-1797773	-	118	16129672	rplT	b1716	-	-	50S ribosomal protein L20 
+1797826-1798023	-	65	49176137	rpmI	b1717	-	COG0291J	50S ribosomal protein L35 
+1823164-1823649	-	161	16129697	spy	b1743	-	COG3678UNTP	envelope stress induced periplasmic protein 
+1860795-1861790	+	331	16129733	gapA	b1779	-	COG0057G	glyceraldehyde-3-phosphate dehydrogenase 
+1863750-1864496	-	248	16129736	mipA	b1782	-	-	scaffolding protein for murein synthesizing machinery 
+1901106-1901906	+	266	16129772	manY	b1818	-	-	mannose-specific enzyme IIC component of PTS 
+1905250-1905459	-	69	16129777	cspC	b1823	-	-	stress protein, member of the CspA-family 
+1930139-1930780	-	213	16129803	eda	b1850	-	COG0800G	keto-hydroxyglutarate-aldolase/keto-deoxy-phosphogluconate aldolase 
+1945435-1946175	-	246	16129817	yebC	b1864	-	-	hypothetical protein 
+1946774-1948546	-	590	16129819	aspS	b1866	-	COG0173J	aspartyl-tRNA synthetase 
+2083728-2085086	-	452	90111370	yeeF	b2014	-	COG0531E	predicted amino-acid transporter 
+2097886-2099292	-	468	16129970	gnd	b2029	-	COG0362G	6-phosphogluconate dehydrogenase 
+2125217-2126338	-	373	16129993	gmd	b2053	-	COG1089M	GDP-D-mannose dehydratase, NAD(P)-binding 
+2192322-2194355	+	677	16130052	metG	b2114	-	COG0143J,COG0073R	methionyl-tRNA synthetase 
+2237372-2238370	-	332	16130088	mglB	b2150	-	COG1879G	methyl-galactoside transporter subunit 
+2280539-2280823	+	94	16130123	rplY	b2185	-	COG1825J	50S ribosomal protein L25 
+2298289-2300775	-	828	16130143	napA	b2206	-	COG0243C	nitrate reductase, periplasmic, large subunit 
+2309668-2310771	-	367	16130152	ompC	b2215	-	COG3203M	outer membrane porin protein C 
+2334815-2337442	-	875	16130166	gyrA	b2231	-	COG0188L	DNA gyrase subunit A 
+2342887-2345172	+	761	16130169	nrdA	b2234	-	COG0209F	ribonucleotide-diphosphate reductase alpha subunit 
+2373984-2374841	-	285	16130197	menB	b2262	-	COG0447H	naphthoate synthase 
+2395461-2398193	-	910	49176206	nuoG	b2283	-	COG1034C	NADH dehydrogenase subunit G 
+2411492-2412694	+	400	16130231	ackA	b2296	-	COG0282C	acetate kinase 
+2412769-2414913	+	714	16130232	pta	b2297	-	COG0280C,COG0857R	phosphate acetyltransferase 
+2438407-2439627	-	406	16130258	fabB	b2323	-	COG0304IQ	3-oxoacyl-(acyl carrier protein) synthase 
+2453105-2453668	-	187	16130272	yfcV	b2339	-	-	predicted fimbrial-like adhesin protein 
+2458672-2458956	-	94	90111421	yfcZ	b2343	-	-	hypothetical protein 
+2505938-2506264	-	108	16130319	ypdH	b2387	-	-	predicted enzyme IIB component of PTS 
+2511064-2512266	+	400	16130325	nupC	b2393	-	-	nucleoside (except guanosine) transporter 
+2517279-2518694	-	471	16130330	gltX	b2400	-	COG0008J	glutamyl-tRNA synthetase 
+2531786-2532043	+	85	16130341	ptsH	b2415	-	COG1925G	phosphohistidinoprotein-hexose phosphotransferase component of PTS system (Hpr) 
+2533856-2534365	+	169	16130343	crr	b2417	-	-	glucose-specific PTS system enzyme IIA component 
+2570179-2570472	-	97	90111439	cchA	b2457	-	COG4577QC	predicted carboxysome structural protein, ethanolamine utilization protein 
+2594927-2595640	-	237	16130401	purC	b2476	-	-	phosphoribosylaminoimidazole-succinocarboxamide synthase 
+2618268-2618894	-	208	90111448	upp	b2498	-	COG0035F	uracil phosphoribosyltransferase 
+2628980-2630557	-	525	16130432	guaA	b2507	-	COG0518F,COG0519F	bifunctional GMP synthase/glutamine amidotransferase protein 
+2630626-2632092	-	488	16130433	guaB	b2508	-	COG0516F,COG0517R	inositol-5-monophosphate dehydrogenase 
+2642455-2642886	-	143	16130443	ndk	b2518	-	-	nucleoside diphosphate kinase 
+2657925-2658311	-	128	16130454	iscU	b2529	-	COG0822C	scaffold protein 
+2658339-2659553	-	404	49176235	iscS	b2530	-	COG1104E	cysteine desulfurase 
+2661464-2662267	+	267	16130458	suhB	b2533	-	COG0483G	inositol monophosphatase 
+2682276-2683529	-	417	16130476	glyA	b2551	-	COG0112E	serine hydroxymethyltransferase 
+2714088-2714471	-	127	16130504	yfiD	b2579	-	COG3445R	pyruvate formate lyase subunit 
+2742205-2742552	-	115	16130527	rplS	b2606	-	-	50S ribosomal protein L19 
+2743959-2744207	-	82	16130530	rpsP	b2609	-	-	30S ribosomal protein S16 
+2820730-2821791	-	353	16130606	recA	b2699	-	COG0468L	recombinase A 
+2835600-2836127	-	175	16130620	hydN	b2713	-	COG1142C	formate dehydrogenase-H, [4Fe-4S] ferredoxin subunit 
+2842784-2844493	-	569	16130628	hycE	b2721	-	COG3262C,COG3261C	hydrogenase 3, large subunit 
+2904665-2905963	-	432	16130686	eno	b2779	-	COG0148G	phosphopyruvate hydratase 
+2926251-2927540	+	429	16130703	sdaC	b2796	-	COG0814E	predicted serine transporter 
+3006786-3007997	+	403	16130774	ygeY	b2872	-	COG0624E	hypothetical protein 
+3031679-3033196	-	505	16130792	lysS	b2890	-	COG1190J	lysine tRNA synthetase, constitutive 
+3047182-3047571	-	129	16130806	gcvH	b2904	-	COG0509E	glycine cleavage system protein H 
+3068187-3069266	-	359	16130826	fbaA	b2925	-	COG0191G	fructose-bisphosphate aldolase 
+3069481-3070644	-	387	16130827	pgk	b2926	-	-	phosphoglycerate kinase 
+3077666-3079657	-	663	49176286	tktA	b2935	-	COG0021G	transketolase 1, thiamin-binding 
+3080899-3081819	-	306	16130838	speB	b2937	-	COG0010E	agmatinase 
+3084728-3085882	+	384	16130843	metK	b2942	-	COG0192H	S-adenosylmethionine synthetase 
+3139308-3141011	-	567	16130894	hybC	b2994	-	COG0374C	hydrogenase 2, large subunit 
+3208803-3209018	+	71	16130961	rpsU	b3065	-	COG0828J	30S ribosomal protein S21 
+3211069-3212910	+	613	16130963	rpoD	b3067	-	COG0568K	RNA polymerase sigma factor 
+3241351-3242763	-	470	16130987	uxaC	b3092	-	COG1904G	glucuronate isomerase 
+3303993-3305882	-	629	90111550	deaD	b3162	-	COG0513LKJ	ATP-dependent RNA helicase 
+3307055-3309259	-	734	49176320	pnp	b3164	-	COG1185J	polynucleotide phosphorylase/polyadenylase 
+3309437-3309706	-	89	16131057	rpsO	b3165	-	-	30S ribosomal protein S15 
+3310799-3311200	-	133	16131059	rbfA	b3167	-	COG0858J	ribosome-binding factor A 
+3311364-3314036	-	890	16131060	infB	b3168	-	COG0532J	translation initiation factor IF-2 
+3314061-3315548	-	495	16131061	nusA	b3169	-	COG0195K	transcription elongation factor NusA 
+3330884-3331141	-	85	16131075	rpmA	b3185	-	-	50S ribosomal protein L27 
+3331162-3331473	-	103	16131076	rplU	b3186	-	-	50S ribosomal protein L21 
+3357220-3358638	+	472	16131103	gltD	b3213	-	COG0493ER	glutamate synthase, 4Fe-4S protein, small subunit 
+3375837-3376229	-	130	16131120	rpsI	b3230	-	-	30S ribosomal protein S9 
+3376245-3376673	-	142	16131121	rplM	b3231	-	-	50S ribosomal protein L13 
+3381352-3382290	-	312	16131126	mdh	b3236	-	COG0039C	malate dehydrogenase 
+3398066-3399109	-	347	90111564	mreB	b3251	-	COG1077D	cell wall structural complex MreBCD, actin-like component MreB 
+3403939-3405288	+	449	16131144	accC	b3256	-	COG0439I	acetyl-CoA carboxylase 
+3439731-3440120	-	129	16131176	rpsK	b3297	-	COG0100J	30S ribosomal protein S11 
+3442127-3442561	-	144	16131180	rplO	b3301	-	COG0200J	50S ribosomal protein L15 
+3442748-3443251	-	167	16131182	rpsE	b3303	-	COG0098J	30S ribosomal protein S5 
+3443266-3443619	-	117	16131183	rplR	b3304	-	COG0256J	50S ribosomal protein L18 
+3443629-3444162	-	177	16131184	rplF	b3305	-	COG0097J	50S ribosomal protein L6 
+3444175-3444567	-	130	16131185	rpsH	b3306	-	-	30S ribosomal protein S8 
+3444921-3445460	-	179	16131187	rplE	b3308	-	COG0094J	50S ribosomal protein L5 
+3445475-3445789	-	104	16131188	rplX	b3309	-	COG0198J	50S ribosomal protein L24 
+3446336-3446590	-	84	16131190	rpsQ	b3311	-	COG0186J	30S ribosomal protein S17 
+3446781-3447191	-	136	16131192	rplP	b3313	-	COG0197J	50S ribosomal protein L16 
+3447204-3447905	-	233	16131193	rpsC	b3314	-	COG0092J	30S ribosomal protein S3 
+3447923-3448255	-	110	16131194	rplV	b3315	-	-	50S ribosomal protein L22 
+3448565-3449386	-	273	16131196	rplB	b3317	-	COG0090J	50S ribosomal protein L2 
+3449404-3449706	-	100	16131197	rplW	b3318	-	COG0089J	50S ribosomal protein L23 
+3449703-3450308	-	201	16131198	rplD	b3319	-	-	50S ribosomal protein L4 
+3450319-3450948	-	209	16131199	rplC	b3320	-	-	50S ribosomal protein L3 
+3450981-3451292	-	103	16131200	rpsJ	b3321	-	COG0051J	30S ribosomal protein S10 
+3468167-3469351	-	394	16131218	tufA	b3339	-	COG0050J	protein chain elongation factor EF-Tu (duplicate of tufB) 
+3469422-3471536	-	704	16131219	fusA	b3340	-	COG0480J	elongation factor EF-2 
+3472200-3472574	-	124	16131221	rpsL	b3342	-	-	30S ribosomal protein S12 
+3474629-3475441	-	270	16131226	fkpA	b3347	-	COG0545O	FKBP-type peptidyl-prolyl cis-trans isomerase (rotamase) 
+3475929-3476519	-	196	16131228	slyD	b3349	-	COG1047O	FKBP-type peptidyl prolyl cis-trans isomerase (rotamase) 
+3492033-3494576	+	847	16131244	nirB	b3365	-	COG1251C	nitrite reductase, large subunit, NAD(P)H-binding 
+3497470-3497637	+	55	16131247	yhfL	b3369	-	-	conserved secreted peptide 
+3530840-3532462	+	540	16131280	pck	b3403	-	COG1866C	phosphoenolpyruvate carboxykinase 
+3597952-3598806	-	284	16131333	rpoH	b3461	-	COG0568K	RNA polymerase sigma factor 
+3704121-3705728	-	535	16131416	dppA	b3544	-	COG0747E	dipeptide transporter 
+3714570-3715229	+	219	49176370	yiaD	b3552	-	COG2885M	predicted outer membrane lipoprotien 
+3718072-3718284	+	70	16131427	cspA	b3556	-	-	major cold shock protein 
+3720351-3722420	-	689	16131430	glyS	b3559	-	COG0751J	glycyl-tRNA synthetase subunit beta 
+3722430-3723341	-	303	16131431	glyQ	b3560	-	-	glycyl-tRNA synthetase subunit alpha 
+3770304-3772217	+	637	16131470	mtlA	b3599	-	COG2213G,COG4668G	fused mannitol-specific PTS enzymes: IIA components/IIB components/IIC components 
+3781684-3782151	-	155	16131480	secB	b3609	-	COG1952U	export protein SecB 
+3783283-3784827	+	514	16131483	gpmI	b3612	-	COG0696G	phosphoglyceromutase 
+3792010-3792942	+	310	16131490	rfaD	b3619	-	COG0451MG	ADP-L-glycero-D-mannoheptose-6-epimerase, NAD(P)-binding 
+3809273-3809440	-	55	16131507	rpmG	b3636	-	COG0267J	50S ribosomal protein L33 
+3809461-3809697	-	78	16131508	rpmB	b3637	-	COG0227J	50S ribosomal protein L28 
+3820129-3820404	+	91	16131520	rpoZ	b3649	-	COG1758K	DNA-directed RNA polymerase subunit omega 
+3875728-3878142	-	804	49176395	gyrB	b3699	-	COG0187L	DNA gyrase subunit B 
+3882359-3882499	+	46	16131571	rpmH	b3703	-	COG0230J	50S ribosomal protein L34 
+3883099-3884745	+	548	16131573	yidC	b3705	-	COG0706U	inner membrane protein translocase component YidC 
+3908508-3909548	-	346	16131596	pstS	b3728	-	COG0226P	phosphate transporter subunit 
+3909862-3911691	-	609	16131597	glmS	b3729	-	COG0449M	D-fructose-6-phosphate amidotransferase 
+3914016-3915398	-	460	16131600	atpD	b3732	-	COG0055C	F0F1 ATP synthase subunit beta 
+3916339-3917880	-	513	16131602	atpA	b3734	-	COG0056C	F0F1 ATP synthase subunit alpha 
+3918973-3919212	-	79	16131605	atpE	b3737	-	COG0636C	F0F1 ATP synthase subunit C 
+3955993-3957468	+	491	16131632	ilvC	b3774	-	COG0059EH	ketol-acid reductoisomerase 
+3963784-3964113	+	109	67005950	trxA	b3781	-	COG0526OC	thioredoxin 
+4014454-4015215	+	253	16131680	udp	b3831	-	COG2820F	uridine phosphorylase 
+4041441-4042067	+	208	16131701	dsbA	b3860	-	-	periplasmic protein disulfide isomerase I 
+4054648-4056057	-	469	16131710	glnA	b3870	-	-	glutamine synthetase 
+4056430-4058253	+	607	49176434	bipA	b3871	-	COG1217T	GTP-binding protein 
+4098833-4099453	+	206	49176442	sodA	b3908	-	COG0605P	superoxide dismutase, Mn 
+4105575-4106537	+	320	16131754	pfkA	b3916	-	COG0205G	6-phosphofructokinase 
+4108763-4109530	-	255	16131757	tpiA	b3919	-	COG0149G	triosephosphate isomerase 
+4118439-4119770	-	443	16131769	hslU	b3931	-	COG1220O	ATP-dependent protease ATP-binding subunit 
+4125036-4125248	+	70	16131774	rpmE	b3936	-	COG0254J	50S ribosomal subunit protein L31 
+4173967-4175151	+	394	16131810	tufB	b3980	-	COG0050J	protein chain elongation factor EF-Tu (duplicate of tufA) 
+4175766-4176311	+	181	16131812	nusG	b3982	-	COG0250K	transcription antitermination protein NusG 
+4176470-4176898	+	142	16131813	rplK	b3983	-	-	50S ribosomal protein L11 
+4176902-4177606	+	234	16131814	rplA	b3984	-	-	50S ribosomal protein L1 
+4178019-4178516	+	165	16131815	rplJ	b3985	-	COG0244J	50S ribosomal protein L10 
+4178583-4178948	+	121	16131816	rplL	b3986	-	COG0222J	50S ribosomal protein L7/L12 
+4179268-4183296	+	1342	16131817	rpoB	b3987	-	COG0085K	DNA-directed RNA polymerase subunit beta 
+4183373-4187596	+	1407	16131818	rpoC	b3988	-	COG0086K	DNA-directed RNA polymerase subunit beta' 
+4198304-4198576	+	90	16131830	hupA	b4000	-	-	HU, DNA-binding transcriptional regulator, alpha subunit 
+4203966-4205555	-	529	16131836	purH	b4006	-	-	bifunctional phosphoribosylaminoimidazolecarboxamide formyltransferase/IMP cyclohydrolase 
+4231781-4233430	+	549	16131851	pgi	b4025	-	COG0166G	glucose-6-phosphate isomerase 
+4243252-4244442	-	396	16131860	malE	b4034	-	COG2182G	maltose ABC transporter periplasmic protein 
+4257260-4257469	+	69	16131871	yjbJ	b4045	-	COG3237S	predicted stress response protein 
+4272148-4272684	+	178	16131885	ssb	b4059	-	COG0629L	single-strand DNA-binding protein 
+4324422-4324757	-	111	16131934	phnA	b4108	-	COG2824P	hypothetical protein 
+4354493-4356640	-	715	16131957	cadA	b4131	-	COG1982E	lysine decarboxylase 1 
+4363495-4364796	-	433	16131963	dcuA	b4138	-	COG2704R	C4-dicarboxylate antiporter 
+4364914-4366350	-	478	90111690	aspA	b4139	-	COG1027E	aspartate ammonia-lyase 
+4368711-4369004	+	97	16131967	groS	b4142	-	COG0234O	co-chaperonin GroES 
+4369048-4370694	+	548	16131968	groL	b4143	-	COG0459O	chaperonin GroEL 
+4373722-4374288	+	188	16131972	efp	b4147	-	COG0231J	elongation factor P 
+4377806-4378540	-	244	16131978	frdB	b4153	-	COG0479C	fumarate reductase (anaerobic), Fe-S subunit 
+4378533-4380341	-	602	16131979	frdA	b4154	-	COG1053C	fumarate reductase 
+4401323-4402327	+	334	16131997	hflC	b4175	-	COG0330O	modulator for HflB protease specific for phage lambda cII repressor 
+4402710-4404008	+	432	16131999	purA	b4177	-	-	adenylosuccinate synthetase 
+4419731-4420195	+	154	16132017	ulaC	b4195	-	COG1762GT	L-ascorbate-specific enzyme IIA component of PTS 
+4420209-4420859	+	216	16132018	ulaD	b4196	-	COG0269G	3-keto-L-gulonate 6-phosphate decarboxylase 
+4423141-4423536	+	131	16132022	rpsF	b4200	-	COG0360J	30S ribosomal protein S6 
+4423862-4424089	+	75	16132024	rpsR	b4202	-	-	30S ribosomal protein S18 
+4424131-4424580	+	149	16132025	rplI	b4203	-	COG0359J	50S ribosomal protein L9 
+4426958-4427578	+	206	90111705	fklB	b4207	-	COG0545O	FKBP-type peptidyl-prolyl cis-trans isomerase (rotamase) 
+4447145-4447675	-	176	16132048	ppa	b4226	-	COG0221C	inorganic pyrophosphatase 
+4468550-4468936	-	128	90111711	yjgF	b4243	-	COG0251J	ketoacid-binding protein 
+4479005-4481860	-	951	16132080	valS	b4258	-	COG0525J	valyl-tRNA synthetase 
+4549659-4550843	+	394	16132143	uxuA	b4322	-	COG1312G	mannonate dehydratase 
+4550924-4552384	+	486	16132144	uxuB	b4323	-	-	D-mannonate oxidoreductase, NAD-binding 
+
