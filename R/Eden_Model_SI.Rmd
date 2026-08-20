@@ -1580,11 +1580,11 @@ meta.wahl<-function(data){
 We can fit this model to the published data (note one study is discarded because $\tau$ was not reported):
 
 ```{r }
-m_tau_dat2<-meta.wahl(data=subset(tau_dat, !is.na(tau)))
-m_tau_dat2
+m_tau_dat3<-meta.wahl(data=subset(tau_dat, !is.na(tau)))
+m_tau_dat3
 ```
 
-The best estimate is `r round(m_tau_dat2$s, 3)` $\pm$ `r round(m_tau_dat2$se, 3)` and the model is a very slight improvement over the intercept only model ($\Delta$AIC=`r round(m_tau_dat2$dAIC, 3)`). The estimated $s$ should be seen as an upper bound on the mean $s$ of non-synonymous mutations *if* the homogeneous growth model is accurate. $s$ would have been estimated as more negative had we been able to factor in selection against synonymous mutations, accounted for variation in $s$ around the mean (since $b(s|\tau)$ is convex), and accommodated the drift component of homogeneous growth. 
+The best estimate is `r round(m_tau_dat3$s, 3)` $\pm$ `r round(m_tau_dat3$se, 3)` and the model is a very slight improvement over the intercept only model ($\Delta$AIC=`r round(m_tau_dat3$dAIC, 3)`). The estimated $s$ should be seen as an upper bound on the mean $s$ of non-synonymous mutations *if* the homogeneous growth model is accurate. $s$ would have been estimated as more negative had we been able to factor in selection against synonymous mutations, accounted for variation in $s$ around the mean (since $b(s|\tau)$ is convex), and accommodated the drift component of homogeneous growth. 
 
 # Power
 
