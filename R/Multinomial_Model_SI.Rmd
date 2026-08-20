@@ -8,7 +8,7 @@ bibliography: /Users/jhadfiel/Work/Tex/library/JarLib.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)
 
 if(Sys.info()["nodename"]%in%c("sce-bio-c04553", "sce-bio-c06973", "SCE-BIO-C07467", "S42-76R7VW5J")){
   root<-"/Users/jhadfiel/Work/Selection_MA"
@@ -16,8 +16,6 @@ if(Sys.info()["nodename"]%in%c("sce-bio-c04553", "sce-bio-c06973", "SCE-BIO-C074
   root<-"/Users/s2221673"
 }
 
-library(mlogit)
-library(dfidx)
 library(knitr)
 library(kableExtra)
 
@@ -26,7 +24,7 @@ format_data<-TRUE
 run_models<-FALSE
 save_models<-FALSE
 
-#rmarkdown::render(file.path(root, "R/Multinomial_Model_SI.Rmd"))
+# rmarkdown::render(file.path(root, "R/Multinomial_Model_SI.Rmd"))
 ```
 
 ```{r echo=FALSE}
@@ -35,6 +33,12 @@ mu<-2*10^-10
 ```
 
 In this workbook we implement and explain a set of multinomial models for analysing mutational data from mutational accumulation lines.  The models are fit using the mlogit R package [@Croissant.2020]. 
+
+
+```{r }
+library(mlogit)
+library(dfidx)
+```
 
 We have sequence data from $471$ *Escherichia coli* mutation accumulation (MA) lines where there are four outcomes (A, C, G, T) at each of 4,641,652 sites. In the language of mlogit, sites are referred to as *individuals* or *choice situations*, and the bases as *alternatives*. Ideally, at each site we would record the $471$ outcomes. Since most sites have no mutations, the majority of sites would have all 471 outcomes as a single base - the base of the original sequence. For a minority of sites, 470 outcomes will be the original base and one outcome will be an alternative base caused by a mutation in a single line. In a very small number of cases more than one mutation may be observed at a site. Unfortunately, mlogit can only deal with multinomial outcomes of size one (i.e for each choice situation (site) only one alternative (base) is observed). However, when the chance of observing a mutation is small (because the mutation rate is small and/or the total number of MA generations is small)  - as in our case - then multiple mutations at a site are extremely rare and can be ignored.  Then, we can make the outcome the base of the original sequence if no mutations have been observed, and if a mutation has been observed, we can make the outcome the base of the new mutation. If the total number of MA generation is $g$ then the probability of no observed mutations at a site is $(1-\mu)^g$ and the probability of one mutation is $g\mu(1-\mu)^{g-1}$. By ignoring multiple mutations we approximate the latter probability as $1-(1-\mu)^{g}$, with the approximation being exact as $g\mu$ becomes small. For our *E. coli* MA data set, $g$ is of the order $10^6$ and previous estimates of the mutation rate have been of the order $2\times 10^{-10}$ [@Lee.2012] giving $g\mu$ of the order $2\times 10^{-4}$. The relative error in the approximation is therefore vanishingly small $g\mu(1-\mu)^{g-1}$ = $`r round(g*mu*(1-mu)^(g-1), 10)`$ and $1-(1-\mu)^{g}$ = $`r round(1-(1-mu)^g,10)`$.
 
